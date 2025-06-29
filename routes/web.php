@@ -1,36 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelloController;  // この行を追加が新しい書き方
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello/{msg?}', function ($msg = 'no message') {
-
-$html = <<<EOF
-<html>
-<head>
-    <title>HEllo</title>
-    <style>
-        body {
-            font-size:16pt; color:#999;
-        }
-        h1 {
-            font-size:100pt;
-            text-align: right;
-            color: #eee;
-            margin: -40px 0 -5opx 0;
-        }
-    </style>
-</head>
-<body>
-    <h1>Hello</h1>
-    <p>{$msg}</p>
-    <p>これは、サンプルで作ったページです。</p>
-</body>
-</html>
-EOF;
-
-    return $html;
-});
+// Route::get('hello',"HelloController@index");
+//Laravel 8以降では、ルートの書き方が変わったため、以下のように記述します。
+Route::get('hello', [HelloController::class, 'index']);  // 新しい書き方
