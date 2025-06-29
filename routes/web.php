@@ -8,4 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('hello', [HelloController::class, 'index']);  // 新しい書き方
+Route::post('hello', [HelloController::class, 'post']);  // 新しい書き方
 
