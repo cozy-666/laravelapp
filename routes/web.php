@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('hello', HelloController::class);
+Route::get('hello/', [HelloController::class, 'index']);  // 新しい書き方
 
