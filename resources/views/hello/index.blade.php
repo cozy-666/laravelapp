@@ -21,6 +21,11 @@
 <body>
     <h1>Blade/Index</h1>
     <p>{{ $msg }}</p>
+    <form method="POST" action="/hello">
+        @csrf
+        <input type="text" name="msg" value="{{ old('msg') }}">
+        <input type="submit" value="送信">
+    </form>
 </body>
 
 </html>

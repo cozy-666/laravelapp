@@ -13,4 +13,5 @@ class HelloController extends Controller
         ];
         return view('hello.index', $data);
     }
+
 }
