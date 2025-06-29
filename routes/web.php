@@ -7,5 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', [HelloController::class, 'index']);  // 新しい書き方
+Route::get('hello/{id?}', [HelloController::class, 'index']);  // 新しい書き方
 
