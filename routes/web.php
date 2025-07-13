@@ -11,3 +11,6 @@ Route::get('/', function () {
 Route::get('hello', [HelloController::class, 'index'])
     ->middleware('hello');  // 新しい書き方
 Route::post('hello', [HelloController::class, 'post']);  // 新しい書き方
+
+Route::get('hello/add', [HelloController::class, 'add']);
+Route::post('hello/add', [HelloController::class, 'create']);
