@@ -8,7 +8,7 @@
             ul {font-size: 12pt;}
             hr {margin: 25px 100px; border-top: 1px dashed #ddd;}
             .menutitle {font-size: 14pt; font-weight: bold; margin: 0px;}
-            .contents {margin: 10px;}
+            .content {margin: 10px;}
             .footer {text-align: right; font-size: 10pt; margin: 10px;
                 border-bottom: solid 1px #ccc; color: #ccc;}
         </style>
@@ -21,8 +21,8 @@
             <li>@show</li>
         </ul>
         <hr size="1">
-        <div class="contents">
-            @yield('contents')
+        <div class="content">
+            @yield('content')
         </div>
         <div class="footer">
             @yield('footer')
