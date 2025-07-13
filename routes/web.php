@@ -8,7 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', [HelloController::class, 'index'])  // 新しい書き方
-     ->middleware('hello');
-
+Route::get('hello', [HelloController::class, 'index'])
+    ->middleware('hello');  // 新しい書き方
 Route::post('hello', [HelloController::class, 'post']);  // 新しい書き方

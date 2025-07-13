@@ -11,9 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
-        $middleware->alias([
-            'hello' => \App\Http\Middleware\HelloMiddleware::class,
+        // ミドルウェアグループを設定
+        $middleware->group('hello', [
+            \App\Http\Middleware\HelloMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
