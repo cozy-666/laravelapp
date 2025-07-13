@@ -28,7 +28,7 @@ class HelloRequest extends FormRequest
         return [
             'name' => 'required',
             'mail' => 'email',
-            'age' => 'numeric|between:0,150',
+            'age' => 'numeric|hello',
         ];
     }
 
@@ -38,7 +38,7 @@ class HelloRequest extends FormRequest
             'name.required' => '名前は必須です。',
             'mail.email' => 'メールアドレスの形式が正しくありません。',
             'age.numeric' => '年齢は数値で入力してください。',
-            'age.between' => '年齢は0から150の間で入力してください。',
+            'age.hello' => 'Hello! 入力は偶数のみ受け付けます。',
         ];
     }
 }
