@@ -1,37 +1,17 @@
-<html>
+@extends('layouts.helloapp')
 
-<head>
-    <title>Hello/Index</title>
-    <style>
-        body {
-            font-size: 16pt;
-            color: #999;
-        }
+@section('title', 'Index')
 
-        h1 {
-            font-size: 120pt;
-            text-align: right;
-            color: #fafafa;
-            margin: -20px 0px -30px 0px;
-            letter-spacing: -4pt;
-        }
-    </style>
-</head>
+@section('menubar')
+    @parent
+    インデックスページ
+    @endsection
 
-<body>
-    <h1>Blade/Index</h1>
-    <p>&#064;whileディレクティブの例</p>
-    <ol>
-        @php
-        $counter = 0;
-        @endphp
-        @while ($counter < count($data))
-            <li>{{$data[$counter]}}</li>
-            @php
-            $counter++;
-            @endphp
-        @endwhile
-    </ol>
-</body>
+@section('contents')
+<p>ここが本文のコンテンツです。</p>
+<P>必要なだけ記述できます。</P>
+@endsection
 
-</html>
+@section('footer')
+copyright 2023 Cozy666.
+@endsection
