@@ -12,20 +12,13 @@ class PersonController extends Controller
 
     public function index(Request $request)
     {
-        $items = Person::all();
-
-        // デバッグ用
-        // if ($items->count() > 0) {
-        //     $firstItem = $items->first();
-        //     dd([
-        //         'class' => get_class($firstItem),
-        //         'methods' => get_class_methods($firstItem),
-        //         'properties' => get_object_vars($firstItem),
-        //         'has_getData' => method_exists($firstItem, 'getData')
-        //     ]);
-        // }
-
-        return view('person.find', ['items' => $items]);
+        $hasItems = Person::has('board')->get();
+        $noItems = Person::doesntHave('board')->get();
+        $param = [
+            'hasItems' => $hasItems,
+            'noItems' => $noItems
+        ];
+        return view('person.index', $param);
     }
 
     public function find(Request $request)
