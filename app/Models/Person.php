@@ -9,12 +9,12 @@ use App\Scopes\ScopePerson; // Import the ScopePerson class
 
 class Person extends Model
 {
-    protected $table = 'people';  // テーブル名を明示的に指定
+    protected $guarded = array('id');
 
-    protected $fillable = [
-        'name',
-        'mail',
-        'age'
+    public static $rules = [
+        'name' => 'required',
+        'mail' => 'email',
+        'age' => 'numeric|between:0,150'
     ];
 
     public function getData()

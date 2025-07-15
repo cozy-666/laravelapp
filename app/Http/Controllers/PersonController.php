@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class PersonController extends Controller
 {
+    use ValidatesRequests; // これを追加
+
     public function index(Request $request)
     {
         $items = Person::all();
@@ -39,5 +42,20 @@ class PersonController extends Controller
             ->get();
         $param = ['input' => $request->input, 'items' => $item];
         return view('person.find', $param);
+    }
+
+    public function add(Request $request)
+    {
+        return view('person.add');
+    }
+
+    public function create(Request $request)
+    {
+        $this->validate($request, Person::$rules);
+        $person = new Person();
+        $form = $request->all();
+        unset($form['_token']);
+        $person->fill($form)->save();
+        return redirect('/person');
     }
 }
