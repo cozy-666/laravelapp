@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HelloController;  // この行を追加が新しい書き方
+use App\Http\Controllers\HelloController;
+use App\Http\Controllers\PersonController;  // Add this import
 use App\Http\Middleware\HelloMiddleware;
 
 Route::get('/', function () {
@@ -9,8 +10,8 @@ Route::get('/', function () {
 });
 
 Route::get('hello', [HelloController::class, 'index'])
-    ->middleware('hello');  // 新しい書き方
-Route::post('hello', [HelloController::class, 'post']);  // 新しい書き方
+    ->middleware('hello');
+Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('hello/add', [HelloController::class, 'add']);
 Route::post('hello/add', [HelloController::class, 'create']);
