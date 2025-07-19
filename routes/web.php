@@ -13,7 +13,7 @@ Route::get('/', function () {
 });
 
 Route::get('hello', [HelloController::class, 'index'])
-    ->middleware('hello');
+    ->middleware('auth');
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('hello/add', [HelloController::class, 'add']);
@@ -51,3 +51,10 @@ Route::get('hello/rest', [HelloController::class, 'rest']);
 
 Route::get('hello/session', [HelloController::class, 'ses_get']);
 Route::post('hello/session', [HelloController::class, 'ses_put']);
+
+Route::get('hello/auth', [HelloController::class, 'getAuth']);
+Route::post('hello/auth', [HelloController::class, 'putAuth']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
