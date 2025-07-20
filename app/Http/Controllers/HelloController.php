@@ -9,23 +9,43 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HelloController extends Controller
 {
+    private $fname;
+
     function __construct()
     {
-        config(['sample.message'=>'新しいメッセージ！']);
+        $this->fname = 'hello.txt';
     }
+
     public function index(Request $request)
     {
-        $user = Auth::user();
-        $sort = $request->sort;
-        // $items = DB::table('people')->orderBy($sort, 'asc')
-        //     ->simplePaginate(5);
-        $items = Person::orderBy($sort, 'asc')
-            ->simplePaginate(5);
-        $param = ['items' => $items, 'sort' => $sort, 'user' => $user];
-        return view('hello.index', $param);
+        $url = asset('storage/' . $this->fname);
+        $size = Storage::disk('public')->size($this->fname);
+        $modified = Storage::disk('public')
+            ->lastModified($this->fname);
+        $modified_time = data('y-m-d H:i:s', $modified);
+        $sample_keys = ['url', 'size', 'modified'];
+        $sample_meta = [$url, $size, $modified_time];
+        $result = '<table><tr><th>' .implode('</th><th>',
+            $sample_keys) . '</th></tr>';
+        $result .= '<tr>><td>' . implode('</td<td>',
+            $sample_meta) . '</td></tr></table>';
+        $sample_data = Storage::disk('public')->get($this->fname);
+
+        $data = [
+            'msg' => $result,
+            'data' => explode(PHP_EOL, $sample_data)
+        ];
+        return view('hello.index', $data);
+    }
+
+    public function other($msg)
+    {
+        Storage::disk('public')->prepend($this->fname, $msg);
+        return redirect()->route('hello');
     }
 
     public function post(Request $request)
@@ -89,7 +109,7 @@ class HelloController extends Controller
         return redirect('/hello');
     }
 
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $page = $request->page;
         $items = DB::table('people')
@@ -127,12 +147,11 @@ class HelloController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        if (Auth::attempt(['email' => $email, 'password' => $password])){
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $msg = 'ログインしました。(' . Auth::user()->name . ')';
-        }else {
+        } else {
             $msg = 'ログインに失敗しました。';
         }
         return view('hello.auth', ['message' => $msg]);
     }
-
 }
