@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class HelloController extends Controller
 {
+    function __construct()
+    {
+        config(['sample.message'=>'新しいメッセージ！']);
+    }
     public function index(Request $request)
     {
         $user = Auth::user();

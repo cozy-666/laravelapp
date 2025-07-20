@@ -5,6 +5,8 @@ use App\Http\Controllers\HelloController;
 use App\Http\Controllers\PersonController;  // Add this import
 use App\Http\Controllers\BoardController;  // Add this import
 use App\Http\Controllers\RestappController;  // Add this import
+use App\Http\Controllers\Sample\SampleController;  // ファイル上部に追加
+
 
 use App\Http\Middleware\HelloMiddleware;
 
@@ -58,3 +60,7 @@ Route::post('hello/auth', [HelloController::class, 'putAuth']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::namespaceを削除して、直接クラス参照を使用
+Route::get('/sample', [SampleController::class, 'index']);
+Route::get('/sample/other', [SampleController::class, 'other']);

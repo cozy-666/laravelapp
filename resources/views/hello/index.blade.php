@@ -45,15 +45,15 @@
             <th><a href="/hello?sort=mail">Email</a></th>
             <th><a href="/hello?sort=age">Age</a></th>
         </tr>
-        @foreach ($items as $item)
+        {{-- @foreach ($items as $item)
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->mail }}</td>
                 <td>{{ $item->age }}</td>
             </tr>
-        @endforeach
+        @endforeach --}}
     </table>
-    {{ $items->appends(['sort' => $sort])->links() }}
+    {{-- {{ $items->appends(['sort' => $sort])->links() }} --}}
 @endsection
 
 @section('footer')
